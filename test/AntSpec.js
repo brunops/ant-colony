@@ -23,6 +23,20 @@ describe('Ant', function () {
     });
   });
   
+  describe('#move(x, y)', function () {
+    it('moves ant by x and y starting at current position', function () {
+      ant.move(3, 7);
+      assert.equal(ant.x, 3);
+      assert.equal(ant.y, 7);
+    });
+
+    it('has a cummulative effect', function () {
+      ant.move(2, 4);
+      ant.move(1, -1);
+      assert.equal(ant.x, 3);
+      assert.equal(ant.y, 3);
+    });
+  });
 
 });
 
