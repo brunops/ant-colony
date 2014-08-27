@@ -14,6 +14,13 @@ describe('Ant', function () {
       assert.equal(ant.x, 0);
       assert.equal(ant.y, 0);
     });
+
+    it('starts at specified position uppon instantiation', function () {
+      ant = new Ant(5, 6);
+
+      assert.equal(ant.x, 5);
+      assert.equal(ant.y, 6);
+    });
   });
   
 
