@@ -49,6 +49,14 @@ describe('Ant', function () {
       ant.pickUpFood(food);
       assert.equal(ant.carriedFood, food);  
     });
+
+    it('throws an error if ant is already carrying food', function () {
+      var food2 = {};
+      ant.pickUpFood(food); 
+      assert.throws(function () {
+        ant.pickUpFood(food2);
+      }, Error);
+    });
   });
 
   describe('#isCarryingFood()', function () {
