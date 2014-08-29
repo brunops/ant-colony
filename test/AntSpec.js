@@ -38,6 +38,14 @@ describe('Ant', function () {
     });
   });
 
+  describe('#pickUpFood()', function () {
+    it('picks up some food', function () {
+      var food = {};
+      ant.pickUpFood(food);
+      assert.equal(ant.carriedFood, food);  
+    });
+  });
+
   describe('#isCarryingFood()', function () {
     it('starts not carrying any food', function () {
       assert.equal(ant.isCarryingFood(), false);
