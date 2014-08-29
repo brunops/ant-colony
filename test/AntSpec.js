@@ -38,5 +38,11 @@ describe('Ant', function () {
     });
   });
 
+  describe('#isCarryingFood()', function () {
+    it('starts not carrying any food', function () {
+      assert.equal(ant.isCarryingFood(), false);
+    });
+  });
+
 });
 
