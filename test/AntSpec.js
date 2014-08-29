@@ -39,8 +39,13 @@ describe('Ant', function () {
   });
 
   describe('#pickUpFood()', function () {
-    it('picks up some food', function () {
-      var food = {};
+    var food;
+
+    beforeEach(function () {
+      food = {};
+    });
+   
+    it('picks up food and set "carriedFood" property', function () {
       ant.pickUpFood(food);
       assert.equal(ant.carriedFood, food);  
     });
