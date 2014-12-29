@@ -63,6 +63,14 @@ describe('Ant', function () {
     it('starts not carrying any food', function () {
       assert.equal(ant.isCarryingFood(), false);
     });
+
+    it('is carrying food after #pickUpFood() is called', function () {
+      var food = {};
+  
+      ant.pickUpFood(food);
+      assert.equal(ant.isCarryingFood(), true);
+    });
+
   });
 
 });
