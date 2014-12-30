@@ -70,8 +70,20 @@ describe('Ant', function () {
       ant.pickUpFood(food);
       assert.equal(ant.isCarryingFood(), true);
     });
-
   });
+
+  describe('#getDirection()', function () {
+    it('direction is either N, E, S or W', function () {
+      assert.notEqual(['N', 'E', 'S', 'W'].indexOf(ant.getDirection()), -1);
+    });
+  });
+
+
+
+
+
+
+
 
 });
 
