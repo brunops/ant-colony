@@ -1,4 +1,5 @@
-var assert = require('assert');
+var assert = require('assert'),
+    sinon = require('sinon');
 
 var Ant = require('../lib/Ant.js');
 
@@ -75,6 +76,20 @@ describe('Ant', function () {
   describe('#getDirection()', function () {
     it('direction is either N, E, S or W', function () {
       assert.notEqual(['N', 'E', 'S', 'W'].indexOf(ant.getDirection()), -1);
+    });
+
+    it('starts with a random direction', function () {
+      var randomStub = sinon.stub(Math, 'random');
+      
+      randomStub.returns(0.4);
+      var ant1 = new Ant(),
+          ant1Direction = ant.getDirection();
+
+      randomStub.returns(0.6);
+      var ant2 = new Ant(),
+          ant2Direction = ant2.getDirection();
+
+      assert.notEqual(ant1Direction, ant2Direction);
     });
   });
 
