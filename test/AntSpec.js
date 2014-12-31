@@ -93,12 +93,15 @@ describe('Ant', function () {
     });
   });
 
+  describe('#setDirection()', function () {
+    it('sets new direction', function () {
+      var oldDirection = ant.getDirection();
+          newDirection = oldDirection === 'N' ? 'S' : 'N';
 
-
-
-
-
+      ant.setDirection(newDirection);
+      assert.equal(ant.getDirection(), newDirection);
+    });
+  });
 
 
 });
-
