@@ -116,6 +116,14 @@ describe('Ant', function () {
       assert.equal(ant.y, 5);
     });
 
+    it('does not go out of bounds when position [0][y] and direction "N"', function () {
+      ant.setDirection('N');
+      ant.move(-5, 0);
+      ant.walkLeft();
+
+      assert.equal(ant.x, 0);
+      assert.equal(ant.y, 5);
+    });
   });
 
 });
