@@ -83,7 +83,7 @@ describe('Ant', function () {
       
       randomStub.returns(0.4);
       var ant1 = new Ant(),
-          ant1Direction = ant.getDirection();
+          ant1Direction = ant1.getDirection();
 
       randomStub.returns(0.6);
       var ant2 = new Ant(),
