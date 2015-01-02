@@ -103,5 +103,19 @@ describe('Ant', function () {
     });
   });
 
+  describe('#walkLeft()', function () {
+    beforeEach(function () {
+      ant.move(5, 5);
+    });
+    
+    it('walks to [x - 1][y] when direction is "N"', function () {
+      ant.setDirection('N');
+      ant.walkLeft();
+
+      assert.equal(ant.x, 4);
+      assert.equal(ant.y, 5);
+    });
+
+  });
 
 });
