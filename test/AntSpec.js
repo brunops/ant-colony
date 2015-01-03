@@ -124,6 +124,14 @@ describe('Ant', function () {
       assert.equal(ant.x, 0);
       assert.equal(ant.y, 5);
     });
+
+    it('walks to [x][y + 1] when direction is "R"', function () {
+      ant.setDirection('R');
+      ant.walkLeft();
+
+      assert.equal(ant.x, 5);
+      assert.equal(ant.y, 6);
+    });
   });
 
 });
