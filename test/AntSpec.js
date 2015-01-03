@@ -131,8 +131,7 @@ describe('Ant', function () {
       ant.setDirection('N');
       ant.walkLeft();
 
-      assert.equal(ant.x, 4);
-      assert.equal(ant.y, 5);
+      assert.deepEqual(ant.getPosition(), [4, 5]);
     });
 
     it('does not go out of bounds when position [0][y] and direction "N"', function () {
@@ -140,16 +139,14 @@ describe('Ant', function () {
       ant.move(-5, 0);
       ant.walkLeft();
 
-      assert.equal(ant.x, 0);
-      assert.equal(ant.y, 5);
+      assert.deepEqual(ant.getPosition(), [0, 5]);
     });
 
     it('walks to [x][y + 1] when direction is "R"', function () {
       ant.setDirection('R');
       ant.walkLeft();
 
-      assert.equal(ant.x, 5);
-      assert.equal(ant.y, 6);
+      assert.deepEqual(ant.getPosition(), [5, 6]);
     });
 
     it('does not go out of bounds when position [0][maxY] and direction "R"', function () {
@@ -158,8 +155,7 @@ describe('Ant', function () {
       ant.move(0, 5);
       ant.walkLeft();
 
-      assert.equal(ant.x, 5);
-      assert.equal(ant.y, 10);
+      assert.deepEqual(ant.getPosition(), [5, 10]);
     });
   });
 
