@@ -49,6 +49,15 @@ describe('Ant', function () {
       assert(ant.y, 7);
     });
   });
+
+  describe('#getPosition()', function () {
+    it('returns an array with current x and y position', function () {
+      ant = new Ant(5, 6);
+
+      assert.deepEqual(ant.getPosition(), [5, 6]);
+    });
+  });
+
   describe('#pickUpFood()', function () {
     var food;
 
