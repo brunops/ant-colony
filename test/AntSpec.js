@@ -39,6 +39,16 @@ describe('Ant', function () {
     });
   });
 
+  describe('#setPosition(x, y)', function () {
+    it('sets ant position', function () {
+      ant = new Ant(2, 3);
+
+      ant.setPosition(5, 7);
+
+      assert(ant.x, 5);
+      assert(ant.y, 7);
+    });
+  });
   describe('#pickUpFood()', function () {
     var food;
 
