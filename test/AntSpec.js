@@ -132,6 +132,16 @@ describe('Ant', function () {
       assert.equal(ant.x, 5);
       assert.equal(ant.y, 6);
     });
+
+    it('does not go out of bounds when position [0][maxY] and direction "R"', function () {
+      ant.setDirection('R');
+      // assume map size is 10 for now - no time to be blocked by specifics
+      ant.move(0, 5);
+      ant.walkLeft();
+
+      assert.equal(ant.x, 5);
+      assert.equal(ant.y, 10);
+    });
   });
 
 });
