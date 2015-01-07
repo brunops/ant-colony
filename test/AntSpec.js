@@ -173,6 +173,13 @@ describe('Ant', function () {
 
       assert.deepEqual(ant.getPosition(), [10, 5]);
     });
+
+    it('walks to [x][y - 1] when direction is "W"', function () {
+      ant.setDirection('W');
+      ant.walkLeft();
+
+      assert.deepEqual(ant.getPosition(), [5, 4]);
+    })
   });
 
 });
