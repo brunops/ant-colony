@@ -157,6 +157,13 @@ describe('Ant', function () {
 
       assert.deepEqual(ant.getPosition(), [5, 10]);
     });
+
+    it('walks to [x + 1][y] when direction is "S"', function () {
+      ant.setDirection('S');
+      ant.walkLeft();
+
+      assert.deepEqual(ant.getPosition(), [6, 5]);
+    });
   });
 
 });
