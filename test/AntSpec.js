@@ -142,15 +142,15 @@ describe('Ant', function () {
       assert.deepEqual(ant.getPosition(), [0, 5]);
     });
 
-    it('walks to [x][y + 1] when direction is "R"', function () {
-      ant.setDirection('R');
+    it('walks to [x][y + 1] when direction is "E"', function () {
+      ant.setDirection('E');
       ant.walkLeft();
 
       assert.deepEqual(ant.getPosition(), [5, 6]);
     });
 
-    it('does not go out of bounds when position [0][maxY] and direction "R"', function () {
-      ant.setDirection('R');
+    it('does not go out of bounds when position [0][maxY] and direction "E"', function () {
+      ant.setDirection('E');
       // assume map size is 10 for now - no time to be blocked by specifics
       ant.setPosition(5, 10);
       ant.walkLeft();
