@@ -122,14 +122,22 @@ describe('Ant', function () {
     });
   });
 
-  describe('#walkLeft()', function () {
+  describe('#walkLeft(worldStateworldState)', function () {
+    var worldState;
+
     beforeEach(function () {
       ant.setPosition(5, 5);
+
+      worldState = {
+        getSize: function () {
+          return 10;
+        }
+      };
     });
 
     it('walks to [x - 1][y] when direction is "N"', function () {
       ant.setDirection('N');
-      ant.walkLeft();
+      ant.walkLeft(worldState);
 
       assert.deepEqual(ant.getPosition(), [4, 5]);
     });
@@ -137,67 +145,65 @@ describe('Ant', function () {
     it('does not go out of bounds when position [0][y] and direction "N"', function () {
       ant.setDirection('N');
       ant.setPosition(0, 5);
-      ant.walkLeft();
+      ant.walkLeft(worldState);
 
       assert.deepEqual(ant.getPosition(), [0, 5]);
     });
 
     it('direction gets updated to "W" if starting direction is "N"', function () {
       ant.setDirection('N');
-      ant.walkLeft();
+      ant.walkLeft(worldState);
 
       assert.equal(ant.getDirection(), 'W');
     });
 
     it('walks to [x][y + 1] when direction is "E"', function () {
       ant.setDirection('E');
-      ant.walkLeft();
+      ant.walkLeft(worldState);
 
       assert.deepEqual(ant.getPosition(), [5, 6]);
     });
 
     it('does not go out of bounds when position [x][maxY] and direction "E"', function () {
       ant.setDirection('E');
-      // assume map size is 10 for now - no time to be blocked by specifics
-      ant.setPosition(5, 10);
-      ant.walkLeft();
+      ant.setPosition(5, worldState.getSize());
+      ant.walkLeft(worldState);
 
-      assert.deepEqual(ant.getPosition(), [5, 10]);
+      assert.deepEqual(ant.getPosition(), [5, worldState.getSize()]);
     });
 
     it('direction gets updated to "N" if starting direction is "E"', function () {
       ant.setDirection('E');
-      ant.walkLeft();
+      ant.walkLeft(worldState);
 
       assert.equal(ant.getDirection(), 'N');
     });
 
     it('walks to [x + 1][y] when direction is "S"', function () {
       ant.setDirection('S');
-      ant.walkLeft();
+      ant.walkLeft(worldState);
 
       assert.deepEqual(ant.getPosition(), [6, 5]);
     });
 
     it('does not go out of bounds when position [maxX][y] and direction "S"', function () {
       ant.setDirection('S');
-      // assume map size is 10 for now - no time to be blocked by specifics
-      ant.setPosition(10, 5);
-      ant.walkLeft();
+      ant.setPosition(worldState.getSize(), 5);
+      ant.walkLeft(worldState);
 
-      assert.deepEqual(ant.getPosition(), [10, 5]);
+      assert.deepEqual(ant.getPosition(), [worldState.getSize(), 5]);
     });
 
     it('direction gets updated to "E" if starting direction is "S"', function () {
       ant.setDirection('S');
-      ant.walkLeft();
+      ant.walkLeft(worldState);
 
       assert.equal(ant.getDirection(), 'E');
     });
 
     it('walks to [x][y - 1] when direction is "W"', function () {
       ant.setDirection('W');
-      ant.walkLeft();
+      ant.walkLeft(worldState);
 
       assert.deepEqual(ant.getPosition(), [5, 4]);
     });
@@ -205,14 +211,14 @@ describe('Ant', function () {
     it('does not go out of bounds when position [x][0] and direction "W"', function () {
       ant.setDirection('W');
       ant.setPosition(5, 0);
-      ant.walkLeft();
+      ant.walkLeft(worldState);
 
       assert.deepEqual(ant.getPosition(), [5, 0]);
     });
 
     it('direction gets updated to "S" if starting direction is "W"', function () {
       ant.setDirection('W');
-      ant.walkLeft();
+      ant.walkLeft(worldState);
 
       assert.equal(ant.getDirection(), 'S');
     });
