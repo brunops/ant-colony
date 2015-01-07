@@ -149,7 +149,7 @@ describe('Ant', function () {
       assert.deepEqual(ant.getPosition(), [5, 6]);
     });
 
-    it('does not go out of bounds when position [0][maxY] and direction "E"', function () {
+    it('does not go out of bounds when position [x][maxY] and direction "E"', function () {
       ant.setDirection('E');
       // assume map size is 10 for now - no time to be blocked by specifics
       ant.setPosition(5, 10);
@@ -165,7 +165,7 @@ describe('Ant', function () {
       assert.deepEqual(ant.getPosition(), [6, 5]);
     });
 
-    it('does not go out of bounds when position [0][maxY] and direction "S"', function () {
+    it('does not go out of bounds when position [maxX][y] and direction "S"', function () {
       ant.setDirection('S');
       // assume map size is 10 for now - no time to be blocked by specifics
       ant.setPosition(10, 5);
