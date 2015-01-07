@@ -179,7 +179,15 @@ describe('Ant', function () {
       ant.walkLeft();
 
       assert.deepEqual(ant.getPosition(), [5, 4]);
-    })
+    });
+
+    it('does not go out of bounds when position [x][0] and direction "W"', function () {
+      ant.setDirection('W');
+      ant.setPosition(5, 0);
+      ant.walkLeft();
+
+      assert.deepEqual(ant.getPosition(), [5, 0]);
+    });
   });
 
 });
