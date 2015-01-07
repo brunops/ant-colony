@@ -164,6 +164,15 @@ describe('Ant', function () {
 
       assert.deepEqual(ant.getPosition(), [6, 5]);
     });
+
+    it('does not go out of bounds when position [0][maxY] and direction "S"', function () {
+      ant.setDirection('S');
+      // assume map size is 10 for now - no time to be blocked by specifics
+      ant.setPosition(10, 5);
+      ant.walkLeft();
+
+      assert.deepEqual(ant.getPosition(), [10, 5]);
+    });
   });
 
 });
