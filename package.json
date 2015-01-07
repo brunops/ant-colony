@@ -1,0 +1,35 @@
+{
+  "name": "ant-colony",
+  "version": "0.0.1",
+  "description": "Ant colony simulation",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "sinon": "~1.12.2"
+  },
+  "devDependencies": {
+    "sinon": "^1.12.2",
+    "mocha": "^2.1.0"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/brunops/ant-colony.git"
+  },
+  "keywords": [
+    "simulation",
+    "ant",
+    "colony",
+    "canvas"
+  ],
+  "author": "brunops",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/brunops/ant-colony/issues"
+  },
+  "homepage": "https://github.com/brunops/ant-colony"
+}
