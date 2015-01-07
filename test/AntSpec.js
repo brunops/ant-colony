@@ -165,6 +165,13 @@ describe('Ant', function () {
       assert.deepEqual(ant.getPosition(), [5, 10]);
     });
 
+    it('direction gets updated to "N" if starting direction is "E"', function () {
+      ant.setDirection('E');
+      ant.walkLeft();
+
+      assert.equal(ant.getDirection(), 'N');
+    });
+
     it('walks to [x + 1][y] when direction is "S"', function () {
       ant.setDirection('S');
       ant.walkLeft();
