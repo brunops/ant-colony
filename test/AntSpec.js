@@ -23,7 +23,7 @@ describe('Ant', function () {
       assert.equal(ant.y, 6);
     });
   });
-  
+
   describe('#move(x, y)', function () {
     it('moves ant by x and y starting at current position', function () {
       ant.move(3, 7);
@@ -64,15 +64,15 @@ describe('Ant', function () {
     beforeEach(function () {
       food = {};
     });
-   
+
     it('picks up food and set "carriedFood" property', function () {
       ant.pickUpFood(food);
-      assert.equal(ant.carriedFood, food);  
+      assert.equal(ant.carriedFood, food);
     });
 
     it('throws an error if ant is already carrying food', function () {
       var food2 = {};
-      ant.pickUpFood(food); 
+      ant.pickUpFood(food);
       assert.throws(function () {
         ant.pickUpFood(food2);
       }, Error);
@@ -86,7 +86,7 @@ describe('Ant', function () {
 
     it('is carrying food after #pickUpFood() is called', function () {
       var food = {};
-  
+
       ant.pickUpFood(food);
       assert.equal(ant.isCarryingFood(), true);
     });
@@ -99,7 +99,7 @@ describe('Ant', function () {
 
     it('starts with a random direction', function () {
       var randomStub = sinon.stub(Math, 'random');
-      
+
       randomStub.returns(0.4);
       var ant1 = new Ant(),
           ant1Direction = ant1.getDirection();
@@ -124,9 +124,9 @@ describe('Ant', function () {
 
   describe('#walkLeft()', function () {
     beforeEach(function () {
-      ant.move(5, 5);
+      ant.setPosition(5, 5);
     });
-    
+
     it('walks to [x - 1][y] when direction is "N"', function () {
       ant.setDirection('N');
       ant.walkLeft();
@@ -136,7 +136,7 @@ describe('Ant', function () {
 
     it('does not go out of bounds when position [0][y] and direction "N"', function () {
       ant.setDirection('N');
-      ant.move(-5, 0);
+      ant.setPosition(0, 5);
       ant.walkLeft();
 
       assert.deepEqual(ant.getPosition(), [0, 5]);
@@ -152,7 +152,7 @@ describe('Ant', function () {
     it('does not go out of bounds when position [0][maxY] and direction "R"', function () {
       ant.setDirection('R');
       // assume map size is 10 for now - no time to be blocked by specifics
-      ant.move(0, 5);
+      ant.setPosition(5, 10);
       ant.walkLeft();
 
       assert.deepEqual(ant.getPosition(), [5, 10]);
