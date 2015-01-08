@@ -4,10 +4,16 @@ var assert = require('assert'),
 var Ant = require('../lib/Ant.js');
 
 describe('Ant', function () {
-  var ant;
+  var ant, worldState;
 
   beforeEach(function () {
     ant = new Ant();
+
+    worldState = {
+      getSize: function () {
+        return 10;
+      }
+    };
   });
 
   describe('#new Ant(x, y)', function () {
@@ -123,16 +129,8 @@ describe('Ant', function () {
   });
 
   describe('#walkLeft(worldState)', function () {
-    var worldState;
-
     beforeEach(function () {
       ant.setPosition(5, 5);
-
-      worldState = {
-        getSize: function () {
-          return 10;
-        }
-      };
     });
 
     it('walks to [x - 1][y] when direction is "N"', function () {
@@ -225,16 +223,8 @@ describe('Ant', function () {
   });
 
   describe('#walkStraight(worldState)', function () {
-    var worldState;
-
     beforeEach(function () {
       ant.setPosition(5, 5);
-
-      worldState = {
-        getSize: function () {
-          return 10;
-        }
-      };
     });
 
     it('walks to [x][y + 1] when direction is "N"', function () {
@@ -245,11 +235,11 @@ describe('Ant', function () {
     });
 
     it('does not go out of bounds when position [x][maxY] and direction "N"', function () {
-        ant.setDirection('N');
-        ant.setPosition(5, worldState.getSize());
-        ant.walkStraight(worldState);
+      ant.setDirection('N');
+      ant.setPosition(5, worldState.getSize());
+      ant.walkStraight(worldState);
 
-        assert.deepEqual(ant.getPosition(), [5, worldState.getSize()]);
+      assert.deepEqual(ant.getPosition(), [5, worldState.getSize()]);
     });
   });
 
