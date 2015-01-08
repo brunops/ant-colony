@@ -224,4 +224,27 @@ describe('Ant', function () {
     });
   });
 
+  describe('#walkStraight()', function () {
+    beforeEach(function () {
+      ant.setPosition(5, 5);
+    });
+
+    it('walks to [x][y + 1] when direction is "N"', function () {
+      ant.setDirection('N');
+      ant.walkStraight();
+
+      assert.deepEqual(ant.getPosition(), [5, 6]);
+    });
+  });
+
 });
+
+
+
+
+
+
+
+
+
+
