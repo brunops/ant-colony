@@ -263,6 +263,13 @@ describe('Ant', function () {
 
       assert.deepEqual(ant.getPosition(), [worldState.getSize(), 5]);
     });
+
+    it('walks to [x][y - 1] when direction is "S"', function () {
+      ant.setDirection('S');
+      ant.walkStraight(worldState);
+
+      assert.deepEqual(ant.getPosition(), [5, 4]);
+    });
   });
 
 });
