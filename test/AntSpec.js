@@ -122,7 +122,7 @@ describe('Ant', function () {
     });
   });
 
-  describe('#walkLeft(worldStateworldState)', function () {
+  describe('#walkLeft(worldState)', function () {
     var worldState;
 
     beforeEach(function () {
@@ -224,16 +224,32 @@ describe('Ant', function () {
     });
   });
 
-  describe('#walkStraight()', function () {
+  describe('#walkStraight(worldState)', function () {
+    var worldState;
+
     beforeEach(function () {
       ant.setPosition(5, 5);
+
+      worldState = {
+        getSize: function () {
+          return 10;
+        }
+      };
     });
 
     it('walks to [x][y + 1] when direction is "N"', function () {
       ant.setDirection('N');
-      ant.walkStraight();
+      ant.walkStraight(worldState);
 
       assert.deepEqual(ant.getPosition(), [5, 6]);
+    });
+
+    it('does not go out of bounds when position [x][maxY] and direction "N"', function () {
+        ant.setDirection('N');
+        ant.setPosition(5, worldState.getSize());
+        ant.walkStraight(worldState);
+
+        assert.deepEqual(ant.getPosition(), [5, worldState.getSize()]);
     });
   });
 
