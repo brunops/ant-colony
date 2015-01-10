@@ -357,6 +357,13 @@ describe('Ant', function () {
 
       assert.deepEqual(ant.getPosition(), [5, 0]);
     });
+
+    it('direction gets updated to "S" when starting direction is "E"', function () {
+      ant.setDirection('E');
+      ant.walkRight(worldState);
+
+      assert.equal(ant.getDirection(), 'S');
+    });
   });
 
 });
