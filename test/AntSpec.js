@@ -348,17 +348,17 @@ describe('Ant', function () {
       ant.walkRight(worldState);
 
       assert.deepEqual(ant.getPosition(), [5, 4]);
-    })
+    });
+
+    it('does not go out of bounds when position [x][0] and direction "E"', function () {
+      ant.setDirection('E');
+      ant.setPosition(5, 0);
+      ant.walkRight(worldState);
+
+      assert.deepEqual(ant.getPosition(), [5, 0]);
+    });
   });
 
 });
-
-
-
-
-
-
-
-
 
 
