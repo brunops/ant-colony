@@ -264,6 +264,13 @@ describe('Ant', function () {
       assert.deepEqual(ant.getPosition(), [worldState.getSize(), 5]);
     });
 
+    it('direction stays "E" after move', function () {
+      ant.setDirection('E');
+      ant.walkStraight(worldState);
+
+      assert.equal(ant.getDirection(), 'E');
+    });
+
     it('walks to [x][y - 1] when direction is "S"', function () {
       ant.setDirection('S');
       ant.walkStraight(worldState);
