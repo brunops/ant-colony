@@ -386,6 +386,13 @@ describe('Ant', function () {
 
       assert.equal(ant.getDirection(), 'W');
     });
+
+    it('walks to [x][y + 1] when direction is "W"', function () {
+      ant.setDirection('W');
+      ant.walkRight(worldState);
+
+      assert.deepEqual(ant.getPosition(), [5, 6]);
+    });
   });
 
 });
