@@ -34,6 +34,25 @@ describe('Ant', function () {
     });
   });
 
+  describe('#setPosition(x, y)', function () {
+    it('sets ant position', function () {
+      ant = new Ant(2, 3);
+
+      ant.setPosition(5, 7);
+
+      assert(ant.x, 5);
+      assert(ant.y, 7);
+    });
+  });
+
+  describe('#getPosition()', function () {
+    it('returns an array with current x and y position', function () {
+      ant = new Ant(5, 6);
+
+      assert.deepEqual(ant.getPosition(), [5, 6]);
+    });
+  });
+
   describe('#move(x, y, [worldState])', function () {
     it('moves ant by x and y starting at current position', function () {
       ant.move(3, 7);
@@ -60,25 +79,6 @@ describe('Ant', function () {
       ant.move(worldState.getSize() + 1, 3, worldState);
 
       assert.deepEqual(ant.getPosition(), [0, 0]);
-    });
-  });
-
-  describe('#setPosition(x, y)', function () {
-    it('sets ant position', function () {
-      ant = new Ant(2, 3);
-
-      ant.setPosition(5, 7);
-
-      assert(ant.x, 5);
-      assert(ant.y, 7);
-    });
-  });
-
-  describe('#getPosition()', function () {
-    it('returns an array with current x and y position', function () {
-      ant = new Ant(5, 6);
-
-      assert.deepEqual(ant.getPosition(), [5, 6]);
     });
   });
 
