@@ -4,7 +4,7 @@ var assert = require('assert'),
 var Ant = require('../lib/Ant.js');
 
 describe('Ant', function () {
-  var ant, worldState;
+  var ant, worldState, worldStateIsValidStub;
 
   beforeEach(function () {
     ant = new Ant();
@@ -18,6 +18,9 @@ describe('Ant', function () {
         return true;
       }
     };
+
+    worldStateIsValidStub = sinon.stub(worldState, 'isValidPosition');
+    worldStateIsValidStub.returns(true);
   });
 
   describe('#new Ant(x, y)', function () {
@@ -56,6 +59,7 @@ describe('Ant', function () {
   describe('#move(x, y, [worldState])', function () {
     it('moves ant by x and y starting at current position', function () {
       ant.move(3, 7);
+
       assert.equal(ant.x, 3);
       assert.equal(ant.y, 7);
     });
@@ -63,6 +67,7 @@ describe('Ant', function () {
     it('has a cummulative effect', function () {
       ant.move(2, 4);
       ant.move(1, -1);
+
       assert.equal(ant.x, 3);
       assert.equal(ant.y, 3);
     });
@@ -74,8 +79,7 @@ describe('Ant', function () {
     });
 
     it('does NOT move if `worldState.isValidPosition()` duck type is `false`', function () {
-      var isValidStub = sinon.stub(worldState, 'isValidPosition');
-      isValidStub.returns(false);
+      worldStateIsValidStub.returns(false);
       ant.move(worldState.getSize() + 1, 3, worldState);
 
       assert.deepEqual(ant.getPosition(), [0, 0]);
@@ -159,6 +163,7 @@ describe('Ant', function () {
     });
 
     it('does not go out of bounds when position [0][y] and direction "N"', function () {
+      worldStateIsValidStub.returns(false);
       ant.setDirection('N');
       ant.setPosition(0, 5);
       ant.walkLeft(worldState);
@@ -181,6 +186,7 @@ describe('Ant', function () {
     });
 
     it('does not go out of bounds when position [x][maxY] and direction "E"', function () {
+      worldStateIsValidStub.returns(false);
       ant.setDirection('E');
       ant.setPosition(5, worldState.getSize());
       ant.walkLeft(worldState);
@@ -203,6 +209,7 @@ describe('Ant', function () {
     });
 
     it('does not go out of bounds when position [maxX][y] and direction "S"', function () {
+      worldStateIsValidStub.returns(false);
       ant.setDirection('S');
       ant.setPosition(worldState.getSize(), 5);
       ant.walkLeft(worldState);
@@ -225,6 +232,7 @@ describe('Ant', function () {
     });
 
     it('does not go out of bounds when position [x][0] and direction "W"', function () {
+      worldStateIsValidStub.returns(false);
       ant.setDirection('W');
       ant.setPosition(5, 0);
       ant.walkLeft(worldState);
@@ -253,6 +261,7 @@ describe('Ant', function () {
     });
 
     it('does not go out of bounds when position [x][maxY] and direction "N"', function () {
+      worldStateIsValidStub.returns(false);
       ant.setDirection('N');
       ant.setPosition(5, worldState.getSize());
       ant.walkStraight(worldState);
@@ -275,6 +284,7 @@ describe('Ant', function () {
     });
 
     it('does not go out of bounds when position [maxX][y] and direction "E"', function () {
+      worldStateIsValidStub.returns(false);
       ant.setDirection('E');
       ant.setPosition(worldState.getSize(), 5);
       ant.walkStraight(worldState);
@@ -297,6 +307,7 @@ describe('Ant', function () {
     });
 
     it('does not go out of bounds when position [x][0] and direction "S"', function () {
+      worldStateIsValidStub.returns(false);
       ant.setDirection('S');
       ant.setPosition(5, 0);
       ant.walkStraight(worldState);
@@ -319,6 +330,7 @@ describe('Ant', function () {
     });
 
     it('does not go out of bounds when position [0][y] and direction "W"', function () {
+      worldStateIsValidStub.returns(false);
       ant.setDirection('W');
       ant.setPosition(0, 5);
       ant.walkStraight(worldState);
@@ -347,6 +359,7 @@ describe('Ant', function () {
     });
 
     it('does not go out of bounds when position [maxX][y] and direction "N"', function () {
+      worldStateIsValidStub.returns(false);
       ant.setDirection('N');
       ant.setPosition(worldState.getSize(), 5);
       ant.walkRight(worldState);
@@ -369,6 +382,7 @@ describe('Ant', function () {
     });
 
     it('does not go out of bounds when position [x][0] and direction "E"', function () {
+      worldStateIsValidStub.returns(false);
       ant.setDirection('E');
       ant.setPosition(5, 0);
       ant.walkRight(worldState);
@@ -391,6 +405,7 @@ describe('Ant', function () {
     });
 
     it('does not go out of bounds when position [0][y] and direction "S"', function () {
+      worldStateIsValidStub.returns(false);
       ant.setDirection('S');
       ant.setPosition(0, 5);
       ant.walkRight(worldState);
@@ -413,6 +428,7 @@ describe('Ant', function () {
     });
 
     it('does not go out of bounds when position [x][maxY] and direction "W"', function () {
+      worldStateIsValidStub.returns(false);
       ant.setDirection('W');
       ant.setPosition(5, worldState.getSize());
       ant.walkRight(worldState);
