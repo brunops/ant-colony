@@ -12,6 +12,10 @@ describe('Ant', function () {
     worldState = {
       getSize: function () {
         return 10;
+      },
+
+      isValidPosition: function (x, y) {
+        return true;
       }
     };
   });
@@ -30,7 +34,7 @@ describe('Ant', function () {
     });
   });
 
-  describe('#move(x, y)', function () {
+  describe('#move(x, y, [worldState])', function () {
     it('moves ant by x and y starting at current position', function () {
       ant.move(3, 7);
       assert.equal(ant.x, 3);
@@ -42,6 +46,20 @@ describe('Ant', function () {
       ant.move(1, -1);
       assert.equal(ant.x, 3);
       assert.equal(ant.y, 3);
+    });
+
+    it('moves ONLY if `worldState.isValidPosition()` duck type is `true`', function () {
+      ant.move(2, 3, worldState);
+
+      assert.deepEqual(ant.getPosition(), [2, 3]);
+    });
+
+    it('does NOT move if `worldState.isValidPosition()` duck type is `false`', function () {
+      var isValidStub = sinon.stub(worldState, 'isValidPosition');
+      isValidStub.returns(false);
+      ant.move(worldState.getSize() + 1, 3, worldState);
+
+      assert.deepEqual(ant.getPosition(), [0, 0]);
     });
   });
 
