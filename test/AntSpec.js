@@ -285,6 +285,13 @@ describe('Ant', function () {
 
       assert.deepEqual(ant.getPosition(), [5, 0]);
     });
+
+    it('direction stays "S" after move', function () {
+      ant.setDirection('S');
+      ant.walkStraight(worldState);
+
+      assert.equal(ant.getDirection(), 'S');
+    });
   });
 
 });
