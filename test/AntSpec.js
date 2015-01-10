@@ -371,6 +371,14 @@ describe('Ant', function () {
 
       assert.deepEqual(ant.getPosition(), [4, 5]);
     });
+
+    it('does not go out of bounds when position [0][y] and direction "S"', function () {
+      ant.setDirection('S');
+      ant.setPosition(0, 5);
+      ant.walkRight(worldState);
+
+      assert.deepEqual(ant.getPosition(), [0, 5]);
+    });
   });
 
 });
