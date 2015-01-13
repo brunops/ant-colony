@@ -4,10 +4,15 @@ var assert = require('assert'),
 var Ant = require('../lib/Ant.js');
 
 describe('Ant', function () {
-  var ant, worldState, worldStateIsValidStub;
+  var ant,
+      worldState,
+      worldStateIsValidStub,
+      randomStub;
 
   beforeEach(function () {
     ant = new Ant();
+
+    randomStub = sinon.stub(Math, 'random');
 
     worldState = {
       getSize: function () {
@@ -21,6 +26,10 @@ describe('Ant', function () {
 
     worldStateIsValidStub = sinon.stub(worldState, 'isValidPosition');
     worldStateIsValidStub.returns(true);
+  });
+
+  afterEach(function () {
+    Math.random.restore();
   });
 
   describe('#new Ant(x, y)', function () {
@@ -126,8 +135,6 @@ describe('Ant', function () {
     });
 
     it('starts with a random direction', function () {
-      var randomStub = sinon.stub(Math, 'random');
-
       randomStub.returns(0.4);
       var ant1 = new Ant(),
           ant1Direction = ant1.getDirection();
@@ -463,6 +470,14 @@ describe('Ant', function () {
       ant.walkUpLeft(worldState);
 
       assert.deepEqual(ant.getPosition(), [0, worldState.getSize()]);
+    });
+
+    it('has 50% chance of keeping "N" direction', function () {
+      randomStub.returns(.49);
+      ant.setDirection('N');
+      ant.walkUpLeft(worldState);
+
+      assert.equal(ant.getDirection(), 'N');
     });
   });
 });
