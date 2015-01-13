@@ -444,6 +444,18 @@ describe('Ant', function () {
     });
   });
 
+  describe('#walkUpLeft(worldState)', function () {
+    beforeEach(function () {
+      ant.setPosition(5, 5);
+    });
+
+    it('walks to [x - 1][y + 1] when direction is "N"', function () {
+      ant.setDirection('N');
+      ant.walkUpLeft(worldState);
+
+      assert.deepEqual(ant.getPosition(), [4, 6]);
+    });
+  });
 });
 
 
