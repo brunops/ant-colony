@@ -6,6 +6,7 @@ var Ant = require('../lib/Ant.js');
 describe('Ant', function () {
   var ant,
       worldState,
+      lastPosition,
       worldStateIsValidStub,
       randomStub;
 
@@ -23,6 +24,8 @@ describe('Ant', function () {
         return true;
       }
     };
+
+    lastPosition = worldState.getSize() - 1;
 
     worldStateIsValidStub = sinon.stub(worldState, 'isValidPosition');
     worldStateIsValidStub.returns(true);
@@ -89,7 +92,7 @@ describe('Ant', function () {
 
     it('does NOT move if `worldState.isValidPosition()` duck type is `false`', function () {
       worldStateIsValidStub.returns(false);
-      ant.move(worldState.getSize() + 1, 3, worldState);
+      ant.move(lastPosition, 3, worldState);
 
       assert.deepEqual(ant.getPosition(), [0, 0]);
     });
@@ -195,10 +198,10 @@ describe('Ant', function () {
     it('does not go out of bounds when position [x][maxY] and direction "E"', function () {
       worldStateIsValidStub.returns(false);
       ant.setDirection('E');
-      ant.setPosition(5, worldState.getSize());
+      ant.setPosition(5, lastPosition);
       ant.walkLeft(worldState);
 
-      assert.deepEqual(ant.getPosition(), [5, worldState.getSize()]);
+      assert.deepEqual(ant.getPosition(), [5, lastPosition]);
     });
 
     it('direction gets updated to "N" if starting direction is "E"', function () {
@@ -218,10 +221,10 @@ describe('Ant', function () {
     it('does not go out of bounds when position [maxX][y] and direction "S"', function () {
       worldStateIsValidStub.returns(false);
       ant.setDirection('S');
-      ant.setPosition(worldState.getSize(), 5);
+      ant.setPosition(lastPosition, 5);
       ant.walkLeft(worldState);
 
-      assert.deepEqual(ant.getPosition(), [worldState.getSize(), 5]);
+      assert.deepEqual(ant.getPosition(), [lastPosition, 5]);
     });
 
     it('direction gets updated to "E" if starting direction is "S"', function () {
@@ -270,10 +273,10 @@ describe('Ant', function () {
     it('does not go out of bounds when position [x][maxY] and direction "N"', function () {
       worldStateIsValidStub.returns(false);
       ant.setDirection('N');
-      ant.setPosition(5, worldState.getSize());
+      ant.setPosition(5, lastPosition);
       ant.walkStraight(worldState);
 
-      assert.deepEqual(ant.getPosition(), [5, worldState.getSize()]);
+      assert.deepEqual(ant.getPosition(), [5, lastPosition]);
     });
 
     it('direction stays as "N" after move', function () {
@@ -293,10 +296,10 @@ describe('Ant', function () {
     it('does not go out of bounds when position [maxX][y] and direction "E"', function () {
       worldStateIsValidStub.returns(false);
       ant.setDirection('E');
-      ant.setPosition(worldState.getSize(), 5);
+      ant.setPosition(lastPosition, 5);
       ant.walkStraight(worldState);
 
-      assert.deepEqual(ant.getPosition(), [worldState.getSize(), 5]);
+      assert.deepEqual(ant.getPosition(), [lastPosition, 5]);
     });
 
     it('direction stays "E" after move', function () {
@@ -368,10 +371,10 @@ describe('Ant', function () {
     it('does not go out of bounds when position [maxX][y] and direction "N"', function () {
       worldStateIsValidStub.returns(false);
       ant.setDirection('N');
-      ant.setPosition(worldState.getSize(), 5);
+      ant.setPosition(lastPosition, 5);
       ant.walkRight(worldState);
 
-      assert.deepEqual(ant.getPosition(), [worldState.getSize(), 5]);
+      assert.deepEqual(ant.getPosition(), [lastPosition, 5]);
     });
 
     it('direction gets updated to "E" when starting direction is "N"', function () {
@@ -437,10 +440,10 @@ describe('Ant', function () {
     it('does not go out of bounds when position [x][maxY] and direction "W"', function () {
       worldStateIsValidStub.returns(false);
       ant.setDirection('W');
-      ant.setPosition(5, worldState.getSize());
+      ant.setPosition(5, lastPosition);
       ant.walkRight(worldState);
 
-      assert.deepEqual(ant.getPosition(), [5, worldState.getSize()]);
+      assert.deepEqual(ant.getPosition(), [5, lastPosition]);
     });
 
     it('direction gets updated to "N" when starting direction is "W"', function () {
@@ -466,10 +469,10 @@ describe('Ant', function () {
     it('does not go out of bounds when position [0][yMax] and direction "N"', function () {
       worldStateIsValidStub.returns(false);
       ant.setDirection('N');
-      ant.setPosition(0, worldState.getSize());
+      ant.setPosition(0, lastPosition);
       ant.walkUpLeft(worldState);
 
-      assert.deepEqual(ant.getPosition(), [0, worldState.getSize()]);
+      assert.deepEqual(ant.getPosition(), [0, lastPosition]);
     });
 
     it('has 50% chance of keeping "N" direction', function () {
@@ -496,7 +499,6 @@ describe('Ant', function () {
     });
 
     it('does not go out of bounds when position is [maxX][maxY] and direction "E"', function () {
-      var lastPosition = worldState.getSize() - 1;
       ant.setDirection('E');
       ant.setPosition(lastPosition, lastPosition);
 
