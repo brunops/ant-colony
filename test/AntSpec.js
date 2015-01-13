@@ -455,6 +455,15 @@ describe('Ant', function () {
 
       assert.deepEqual(ant.getPosition(), [4, 6]);
     });
+
+    it('does not go out of bounds when position [x][yMax] and direction "N"', function () {
+      worldStateIsValidStub.returns(false);
+      ant.setDirection('N');
+      ant.setPosition(5, worldState.getSize());
+      ant.walkUpLeft(worldState);
+
+      assert.deepEqual(ant.getPosition(), [5, worldState.getSize()]);
+    });
   });
 });
 
