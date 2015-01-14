@@ -512,6 +512,14 @@ describe('Ant', function () {
 
       assert.equal(ant.getDirection(), 'E');
     });
+
+    it('has 50% chance of updating direction to "N" when starting direction is "E"', function () {
+      randomStub.returns(.51);
+      ant.setDirection('E');
+      ant.walkUpLeft(worldState);
+
+      assert.equal(ant.getDirection(), 'N');
+    });
   });
 });
 
