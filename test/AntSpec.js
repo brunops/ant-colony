@@ -475,20 +475,20 @@ describe('Ant', function () {
       assert.deepEqual(ant.getPosition(), [0, lastPosition]);
     });
 
-    it('has 50% chance of keeping "N" direction', function () {
-      randomStub.returns(.49);
-      ant.setDirection('N');
-      ant.walkUpLeft(worldState);
-
-      assert.equal(ant.getDirection(), 'N');
-    });
-
     it('has 50% chance of updating direction to "W" when starting direction is "N"', function () {
       randomStub.returns(.51);
       ant.setDirection('N');
       ant.walkUpLeft(worldState);
 
       assert.equal(ant.getDirection(), 'W');
+    });
+
+    it('has 50% chance of keeping "N" direction', function () {
+      randomStub.returns(.49);
+      ant.setDirection('N');
+      ant.walkUpLeft(worldState);
+
+      assert.equal(ant.getDirection(), 'N');
     });
 
     it('walks to [x + 1][y + 1] when direction is "E"', function () {
@@ -505,20 +505,20 @@ describe('Ant', function () {
       assert.deepEqual(ant.getPosition(), [lastPosition, lastPosition]);
     });
 
-    it('has 50% chance of keeping "E" direction', function () {
-      randomStub.returns(.49);
-      ant.setDirection('E');
-      ant.walkUpLeft(worldState);
-
-      assert.equal(ant.getDirection(), 'E');
-    });
-
     it('has 50% chance of updating direction to "N" when starting direction is "E"', function () {
       randomStub.returns(.51);
       ant.setDirection('E');
       ant.walkUpLeft(worldState);
 
       assert.equal(ant.getDirection(), 'N');
+    });
+
+    it('has 50% chance of keeping "E" direction', function () {
+      randomStub.returns(.49);
+      ant.setDirection('E');
+      ant.walkUpLeft(worldState);
+
+      assert.equal(ant.getDirection(), 'E');
     });
 
     it('walks to [x + 1][y - 1] when direction is "S"', function () {
