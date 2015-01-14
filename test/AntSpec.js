@@ -585,6 +585,19 @@ describe('Ant', function () {
       assert.equal(ant.getDirection(), 'W');
     });
   });
+
+  describe('#walkUpRight(worldState)', function () {
+    beforeEach(function () {
+      ant.setPosition(5, 5);
+    });
+
+    it('walks to [x + 1][y + 1] when direction is "N"', function () {
+      ant.setDirection('N');
+      ant.walkUpRight(worldState);
+
+      assert.deepEqual(ant.getPosition(), [6, 6]);
+    });
+  });
 });
 
 
