@@ -614,6 +614,14 @@ describe('Ant', function () {
 
       assert.equal(ant.getDirection(), 'W');
     });
+
+    it('has 50% chance of keeping "N" direction', function () {
+      randomStub.returns(.49);
+      ant.setDirection('N');
+      ant.walkUpRight(worldState);
+
+      assert.equal(ant.getDirection(), 'N');
+    });
   });
 });
 
