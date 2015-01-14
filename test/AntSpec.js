@@ -504,6 +504,14 @@ describe('Ant', function () {
 
       assert.deepEqual(ant.getPosition(), [lastPosition, lastPosition]);
     });
+
+    it('has 50% chance of keeping "E" direction', function () {
+      randomStub.returns(.49);
+      ant.setDirection('E');
+      ant.walkUpLeft(worldState);
+
+      assert.equal(ant.getDirection(), 'E');
+    });
   });
 });
 
