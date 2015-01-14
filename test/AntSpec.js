@@ -568,6 +568,14 @@ describe('Ant', function () {
 
       assert.deepEqual(ant.getPosition(), [0, 0]);
     });
+
+    it('has 50% chance of updating direction to "S" when starting direction is "W"', function () {
+      ant.setDirection('W');
+      randomStub.returns(.51);
+      ant.walkUpLeft(worldState);
+
+      assert.equal(ant.getDirection(), 'S');
+    });
   });
 });
 
