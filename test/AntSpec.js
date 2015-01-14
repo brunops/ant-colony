@@ -606,6 +606,14 @@ describe('Ant', function () {
 
       assert.deepEqual(ant.getPosition(), [lastPosition, lastPosition]);
     });
+
+    it('has 50% chance of facing "W" when starting direction is "N"', function () {
+      randomStub.returns(.51);
+      ant.setDirection('N');
+      ant.walkUpRight(worldState);
+
+      assert.equal(ant.getDirection(), 'W');
+    });
   });
 });
 
