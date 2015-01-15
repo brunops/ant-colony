@@ -661,6 +661,15 @@ describe('Ant', function () {
 
       assert.deepEqual(ant.getPosition(), [4, 4]);
     });
+
+    it('does not go out of bounds when position is [0][0]', function () {
+      worldStateIsValidStub.returns(false);
+      ant.setDirection('S');
+      ant.setPosition(0, 0);
+      ant.walkUpRight(worldState);
+
+      assert.deepEqual(ant.getPosition(), [0, 0]);
+    });
   });
 });
 
