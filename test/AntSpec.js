@@ -607,12 +607,12 @@ describe('Ant', function () {
       assert.deepEqual(ant.getPosition(), [lastPosition, lastPosition]);
     });
 
-    it('has 50% chance of facing "W" when starting direction is "N"', function () {
+    it('has 50% chance of facing "E" when starting direction is "N"', function () {
       randomStub.returns(.51);
       ant.setDirection('N');
       ant.walkUpRight(worldState);
 
-      assert.equal(ant.getDirection(), 'W');
+      assert.equal(ant.getDirection(), 'E');
     });
 
     it('has 50% chance of keeping "N" direction', function () {
