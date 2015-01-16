@@ -719,6 +719,18 @@ describe('Ant', function () {
       assert.equal(ant.getDirection(), 'W');
     });
   });
+
+  describe('#getLeftPosition()', function () {
+    beforeEach(function () {
+      ant.setPosition(5, 5);
+    });
+
+    it('returns [x - 1][y] when direction is "N"', function () {
+      ant.setDirection('N');
+
+      assert.deepEqual(ant.getLeftPosition(), [4, 5]);
+    });
+  });
 });
 
 
