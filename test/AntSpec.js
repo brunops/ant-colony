@@ -742,6 +742,12 @@ describe('Ant', function () {
 
       assert.deepEqual(ant.getLeftPosition(), [6, 5]);
     });
+
+    it('returns [x][y - 1] when direction is "W"', function () {
+      ant.setDirection('W');
+
+      assert.deepEqual(ant.getLeftPosition(), [5, 4]);
+    });
   });
 });
 
